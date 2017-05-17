@@ -10,7 +10,7 @@ echo "my PID is $PID"
 # start monitoring fluent-bit
 # warning - this will run forever
 # set a time cap or manually delete
-# after tests have been ran.
+# after tests have ran.
 while [ 1 ]; do
 
 CPU=$(ps -p $PID -o %cpu=)
