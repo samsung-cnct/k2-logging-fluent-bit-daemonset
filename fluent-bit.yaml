@@ -17,18 +17,13 @@ spec:
     spec:
       containers:
       - name: fluent-bit
-        image: leahnp/fb-kafka
-        # option env variables if directing logs to elasticsearch
+        image: quay.io/samsung_cnct/k2-logging-fluent-bit-daemonset:latest
         env:
           - name:  FLUENT_ELASTICSEARCH_HOST
             value: "elasticsearch"
           - name:  FLUENT_ELASTICSEARCH_PORT
             value: "9200"
         resources:
-          # TODO: test this memory limit, April 2017, this limit was being hit on startup
-          # if there were a lot of logs already existing in /var/lib/docker/containers
-          # limits:
-          #   memory: 100Mi
           requests:
             cpu: 100m
             memory: 100Mi
