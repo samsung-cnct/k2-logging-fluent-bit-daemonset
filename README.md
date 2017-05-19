@@ -24,6 +24,30 @@ This filter adds the following data into the body of the log.
 
 For more information on the filter or to see a list of configuration options: http://fluentbit.io/documentation/0.11/filter/kubernetes.html
 
+## Write Logs to Elasticsearch
+
+To write logs directly to Elasticsearch, modify your fluent-bit.conf. Remove the out_kafka output plugin and add:
+```
+[OUTPUT]
+    Name  es
+    Match *
+    Host  ${FLUENT_ELASTICSEARCH_HOST}
+    Port  ${FLUENT_ELASTICSEARCH_PORT}
+    Logstash_Format On
+    Retry_Limit False
+```
+
+Add these environment variables to the fluent-bit.yaml after line 20:
+```
+  env:
+    - name:  FLUENT_ELASTICSEARCH_HOST
+      value: "elasticsearch"
+    - name:  FLUENT_ELASTICSEARCH_PORT
+      value: "9200"
+```
+
+You will have to rebuild a custom Docker image with these changes. Put your new Docker image link in your fluent-bit.yaml file on line 20.
+
 ## Monitor Resource Consumption in Container
 
 There is an optional script in the init directory to monitor resource usage for Fluent-bit running in your cluster. By modifying your Dockerfile the script will pull CPU and memory consumption constantly. To use the script, replace the last line in the Dockerfile with:
