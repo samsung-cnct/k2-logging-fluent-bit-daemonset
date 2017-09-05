@@ -74,6 +74,9 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
+        - name: kmsg
+          mountPath: /dev/kmsg
+
       terminationGracePeriodSeconds: 10
       volumes:
       - name: varlog
@@ -82,3 +85,6 @@ spec:
       - name: varlibdockercontainers
         hostPath:
           path: /var/lib/docker/containers
+      - name: kmsg
+        hostPath:
+          path: /dev/kmsg
