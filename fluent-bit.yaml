@@ -76,7 +76,6 @@ spec:
           readOnly: true
         - name: kmsg
           mountPath: /dev
-          readOnly: true
 
       terminationGracePeriodSeconds: 10
       volumes:
