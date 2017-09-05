@@ -75,7 +75,8 @@ spec:
           mountPath: /var/lib/docker/containers
           readOnly: true
         - name: kmsg
-          mountPath: /dev/kmsg
+          mountPath: /dev
+          readOnly: true
 
       terminationGracePeriodSeconds: 10
       volumes:
@@ -87,4 +88,4 @@ spec:
           path: /var/lib/docker/containers
       - name: kmsg
         hostPath:
-          path: /dev/kmsg
+          path: /dev
