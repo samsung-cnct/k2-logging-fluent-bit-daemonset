@@ -66,7 +66,7 @@ spec:
         securityContext:
           capabilities:
             add:
-              - CAP_SYSLOG
+              - SYSLOG
 
         image: quay.io/guineveresaenger/k2-logging-fluent-bit-daemonset:latest
         resources:
