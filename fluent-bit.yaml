@@ -64,7 +64,9 @@ spec:
       containers:
       - name: fluent-bit
         securityContext:
-          privileged: true
+          capabilities:
+            add:
+              - CAP_SYSLOG
 
         image: quay.io/guineveresaenger/k2-logging-fluent-bit-daemonset:latest
         resources:
