@@ -39,6 +39,8 @@ To write logs directly to Elasticsearch, modify your fluent-bit.conf. Remove the
 
 Add these environment variables to the daemonset configuration in fluent-bit.yaml under the fluent-bit container image:
 ```
+containers:
+- name: fluent-bit
   image: <image>
   env:
     - name:  FLUENT_ELASTICSEARCH_HOST
