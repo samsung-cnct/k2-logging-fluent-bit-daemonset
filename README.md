@@ -37,8 +37,9 @@ To write logs directly to Elasticsearch, modify your fluent-bit.conf. Remove the
     Retry_Limit False
 ```
 
-Add these environment variables to the fluent-bit.yaml after line 20:
+Add these environment variables to the daemonset configuration in fluent-bit.yaml under the fluent-bit container image:
 ```
+  image: <image>
   env:
     - name:  FLUENT_ELASTICSEARCH_HOST
       value: "elasticsearch"
@@ -46,7 +47,7 @@ Add these environment variables to the fluent-bit.yaml after line 20:
       value: "9200"
 ```
 
-You will have to rebuild a custom Docker image with these changes. Put your new Docker image link in your fluent-bit.yaml file on line 20.
+You will have to rebuild a custom Docker image with these changes. Replace the existing Docker image with a link to yours in your fluent-bit.yaml file for the fluent-bit daemonset.
 
 ## Monitor Resource Consumption in Container
 
@@ -68,9 +69,9 @@ Grep the file for your metrics with:
 $ grep "\[metrics\]" <logs.dat> | cut -d" " -f2,3 > <clean.dat>
 ```
 
-You will have two columns, CPU & MEM, which you can graph or pinpoint peak usage related to your stress testing. 
+You will have two columns, CPU & MEM, which you can graph or pinpoint peak usage related to your stress testing.
 
-GNUPLOT is an easy way to quickly visualize the data. Start GNUPLOT (install if necessary) and run: 
+GNUPLOT is an easy way to quickly visualize the data. Start GNUPLOT (install if necessary) and run:
 
 `gnuplot> plot '<clean.dat>' using 1 with lines` for CPU usage
 `gnuplot> plot '<clean.dat>' using 2 with lines` for MEM usage
