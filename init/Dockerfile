@@ -28,8 +28,7 @@ RUN apt-get -qq update && \
     git clone https://github.com/samsung-cnct/fluent-bit-kafka-output-plugin && \
     cd fluent-bit-kafka-output-plugin && \
     make && \
-    rm -rf /tmp/* /fluent-bit/include /fluent-bit/lib* && \
-    apt-get install systemd
+    rm -rf /tmp/* /fluent-bit/include /fluent-bit/lib*
 
 COPY fluent-bit.conf /fluent-bit/etc/
 COPY parsers.conf /fluent-bit/etc/
