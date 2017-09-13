@@ -5,7 +5,7 @@ publish_branch         = "master"
 image_tag              = "${env.RELEASE_VERSION}" != "null" ? "${env.RELEASE_VERSION}" : "latest"
 project_name           = "k2-logging-fluent-bit-daemonset"
 
-podTemplate(label: '${project_name}', containers: [
+podTemplate(label: "${project_name}", containers: [
     containerTemplate(name: 'jnlp', image: "quay.io/${quay_org}/custom-jnlp:0.1", args: '${computer.jnlpmac} ${computer.name}'),
     containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true)
   ], volumes: [
@@ -13,7 +13,7 @@ podTemplate(label: '${project_name}', containers: [
     hostPathVolume(hostPath: '/var/lib/docker/scratch', mountPath: '/mnt/scratch'),
     secretVolume(mountPath: '/home/jenkins/.docker/', secretName: 'samsung-cnct-quay-robot-dockercfg')
   ]) {
-    node('${project_name}') {
+    node("${project_name}") {
         customContainer('docker') {
             // add a docker rmi/docker purge/etc.
             stage('Checkout') {
