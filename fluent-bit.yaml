@@ -78,13 +78,6 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
-      # - name: dmesg-logs
-      #   image: debian        
-      #   command: ["/bin/sh"]
-      #   args: ["-c", "while true; do dmesg > /var/log/dmesg-logs; sleep 10; done"]
-      #   volumeMounts:
-      #   - name: varlog
-      #     mountPath: /var/log
       terminationGracePeriodSeconds: 10
       volumes:
       - name: varlog
