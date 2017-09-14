@@ -63,10 +63,6 @@ spec:
       serviceAccountName: fluentbit-daemon
       containers:
       - name: fluent-bit
-        securityContext:
-          capabilities:
-            drop:
-              - SYSLOG
         image: quay.io/samsung_cnct/k2-logging-fluent-bit-daemonset:latest
         resources:
           requests:

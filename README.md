@@ -2,7 +2,7 @@
 
 [Fluent-bit](http://fluentbit.io/) daemonset dependencies for Kubernetes logging. The docker image for this repo is located at: quay.io/samsung_cnct/k2-logging-fluent-bit-daemonset.
 
-Currently this daemonset reads Docker logs from var/log/containers, journal logs from /var/log/journal, adds Kubernetes pod metadata and writes to a zookeeper/Kafka component.
+Currently this daemonset reads [Docker logs](https://docs.docker.com/engine/admin/logging/overview/) from `/var/log/containers` and [journald logs](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) from `/var/log/journal`. It adds Kubernetes metadata to the logs and writes them to stdout.
 
 ## Bootstrap
 ```
