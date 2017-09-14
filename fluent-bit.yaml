@@ -67,7 +67,7 @@ spec:
           capabilities:
             drop:
               - SYSLOG
-        image: quay.io/guineveresaenger/k2-logging-fluent-bit-daemonset:latest
+        image: quay.io/samsung_cnct/k2-logging-fluent-bit-daemonset:latest
         resources:
           requests:
             cpu: 100m
