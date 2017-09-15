@@ -16,8 +16,8 @@ USER root
 
 # Install build tools
 RUN apt-get -qq update && \
-    apt-get install -y -qq curl ca-certificates build-essential cmake iputils-ping dnsutils make bash sudo wget unzip nano vim valgrind golang git  && \
-    apt-get install -y -qq --reinstall lsb-base lsb-release && \
+    apt-get install -y -qq curl ca-certificates build-essential cmake iputils-ping dnsutils make bash sudo wget unzip libsystemd-dev nano vim valgrind golang git  && \
+    apt-get install -y -qq --reinstall lsb-base lsb-release && \  
     wget -O "/tmp/fluent-bit-$FLB_VERSION-dev.zip" "https://github.com/fluent/fluent-bit/archive/v$FLB_VERSION.zip" && \
     cd /tmp && \
     unzip "fluent-bit-$FLB_VERSION-dev.zip" && \

@@ -2,7 +2,7 @@
 
 [Fluent-bit](http://fluentbit.io/) daemonset dependencies for Kubernetes logging. The docker image for this repo is located at: quay.io/samsung_cnct/k2-logging-fluent-bit-daemonset.
 
-Currently this daemonset reads Docker logs from var/log/containers, adds Kubernetes pod metadata and writes to a zookeeper/Kafka component.
+Currently this daemonset reads [Docker logs](https://docs.docker.com/engine/admin/logging/overview/) from `/var/log/containers` and [journald logs](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) from `/var/log/journal`. It adds Kubernetes metadata to the logs and writes them to stdout.
 
 ## Bootstrap
 ```
@@ -10,6 +10,18 @@ kubectl create -f fluent-bit.yaml
 ```
 
 ## Plugins
+
+#### Systemd Input Plugin
+
+This input plugin reads from /var/log/journal, which contains kernel, dockerd, and rkt logs, among others. It is new as of v0.12.
+More informaton on this plugin can be found at:
+http://fluentbit.io/documentation/0.12/input/systemd.html
+
+#### Tail Input Plugin
+
+This input plugin monitors text files as matched by a specified Path; in this case, /var/log/containers/*.log, excluding   /var/log/containers/fluent\*.log.
+More informaton on this plugin can be found at:
+http://fluentbit.io/documentation/0.12/input/tail.html
 
 #### Kubernetes Metadata Filter
 
@@ -22,7 +34,7 @@ This filter adds the following data into the body of the log.
 * container name
 * docker container id
 
-For more information on the filter or to see a list of configuration options: http://fluentbit.io/documentation/0.11/filter/kubernetes.html
+For more information on the filter or to see a list of configuration options: http://fluentbit.io/documentation/0.12/filter/kubernetes.html
 
 ## Write Logs to Elasticsearch
 
