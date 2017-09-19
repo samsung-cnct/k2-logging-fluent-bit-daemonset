@@ -64,6 +64,11 @@ spec:
       containers:
       - name: fluent-bit
         image: quay.io/samsung_cnct/k2-logging-fluent-bit-daemonset:latest
+        env:
+          - name:  FLUENT_ELASTICSEARCH_HOST
+            value: "elasticsearch"
+          - name:  FLUENT_ELASTICSEARCH_PORT
+            value: "9200"
         resources:
           requests:
             cpu: 100m
